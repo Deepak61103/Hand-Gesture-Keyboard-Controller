@@ -6,32 +6,53 @@ A hands-free controller that translates specific hand gestures into **Left** ($\
 
 ---
 
-## 🔎 Detailed Overview: Start-to-End Guide
-
-### 1. What It Does
-This program uses the **MediaPipe Hands** framework to detect and track a single hand in real-time. It monitors the state of your five fingers (open or closed) and uses that information to simulate keyboard presses using the `pynput` library.
-
-### 2. Technologies
-* **Python:** The core language.
-* **OpenCV (`cv2`):** Used for capturing video from the webcam and displaying the output.
-* **MediaPipe (`mediapipe`):** Provides the robust, high-performance hand detection and landmark tracking.
-* **pynput:** Used to send virtual key press and release commands to the operating system.
+## 🔎 What It Is (Title and Description)
+This project is a real-time computer vision application that creates a **Virtual Keyboard Controller**. It uses hand tracking to map hand postures directly to keyboard inputs, providing an alternative input method for interacting with desktop applications.
 
 ---
 
-## 🛠️ Installation and Setup
+## ✨ What It Does (Features and Technologies)
+
+### Features
+* **Real-time Keyboard Control:** Simulates key presses for $\leftarrow$ and $\rightarrow$ based on hand gestures.
+* **Dual Control:** Uses a **closed fist** for one action and an **open palm** for another.
+* **Automatic Stop:** Keys are released when no hand is detected, ensuring safe disengagement.
+* **Visual Feedback:** Displays hand landmarks and connections over the live camera feed.
+
+### Technologies
+* **Python:** Core programming language.
+* **OpenCV (`cv2`):** Handles video capture and display.
+* **MediaPipe (`mediapipe`):** Provides the high-performance hand detection and tracking framework.
+* **pynput:** Manages virtual keyboard key presses and releases.
+
+---
+
+## 🛠️ How to Set It Up (Requirements/Installation)
 
 ### Prerequisites
+* Python 3.x installed.
+* A working webcam (built-in or external).
 
-Ensure you have the following installed on your system:
+### Installation
 
-* **Python 3.x**
-* A working **webcam** (internal or external).
+1.  **Create `requirements.txt`** (if necessary):
+    ```
+    opencv-python
+    mediapipe
+    pynput
+    ```
+2.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### Step 1: Get the Code
+---
 
-Clone the repository to your local machine using Git:
+## 🚀 How to Run It (.py)
+
+Make sure your webcam is available and not in use by other applications.
+
+Run the main script from your terminal:
 
 ```bash
-git clone [https://github.com/YourUsername/Hand-Keyboard-Controller.git](https://github.com/YourUsername/Hand-Keyboard-Controller.git)
-cd Hand-Keyboard-Controller
+python virtual_keyboard.py
