@@ -6,49 +6,65 @@ A hands-free controller that translates specific hand gestures into **Left** ($\
 
 ---
 
-## 🔎 What It Is (Title and Description)
-This project is a real-time computer vision application that creates a **Virtual Keyboard Controller**. It uses hand tracking to map hand postures directly to keyboard inputs, providing an alternative input method for interacting with desktop applications.
+## 🖐️ Usage and Controls (How to Use It)
+
+The application window titled "Frame" will open, displaying your webcam feed. Keep your hand visible for control.
+
+| Action | Required Hand Gesture | Code Logic | Resulting Key Press |
+| :--- | :--- | :--- | :--- |
+| **Move Left** | **All Fingers Closed (Closed Fist)** | `count_fingers_open == 0` | `keyboard.press(Key.left)` |
+| **Move Right** | **All Fingers Open (Open Palm)** | `count_fingers_open == 5` | `keyboard.press(Key.right)` |
+| **Neutral / Stop** | **Hand is not detected** | `results.multi_hand_landmarks == None` | `keyboard.release(Key.right)` and `keyboard.release(Key.left)` |
+
+> **Note:** Press the **'q' key** on your physical keyboard to safely exit the application and release all virtual key presses.
 
 ---
 
-## ✨ What It Does (Features and Technologies)
+## 💡 Technologies Used
 
-### Features
-* **Real-time Keyboard Control:** Simulates key presses for $\leftarrow$ and $\rightarrow$ based on hand gestures.
-* **Dual Control:** Uses a **closed fist** for one action and an **open palm** for another.
-* **Automatic Stop:** Keys are released when no hand is detected, ensuring safe disengagement.
-* **Visual Feedback:** Displays hand landmarks and connections over the live camera feed.
+This project relies on the synergy of powerful, open-source libraries:
 
-### Technologies
-* **Python:** Core programming language.
-* **OpenCV (`cv2`):** Handles video capture and display.
-* **MediaPipe (`mediapipe`):** Provides the high-performance hand detection and tracking framework.
-* **pynput:** Manages virtual keyboard key presses and releases.
+* **Python:** The core programming language.
+* **MediaPipe:** Provides the **high-performance Hand Solutions** for accurate, real-time landmark tracking.
+* **OpenCV (`cv2`):** Used for managing the **webcam feed** (capturing video) and displaying the output window.
+* **pynput:** The essential library used to **interface with the operating system** to simulate virtual keyboard key presses and releases.
 
 ---
 
-## 🛠️ How to Set It Up (Requirements/Installation)
+## 🔎 Detailed Overview: Start-to-End Guide
+
+### 1. What It Does
+This program uses the MediaPipe Hands framework to detect and track a single hand in real-time. It monitors the state of your five fingers (open or closed) and uses that information to simulate keyboard presses using the `pynput` library.
+
+### 2. Code Implementation Details
+The logic determines finger state by comparing the tip landmark position to the joint landmarks. The total count of open fingers dictates which keyboard command is issued. The use of `pynput.keyboard.Controller` allows for continuous pressing of keys while the gesture is held.
+
+---
+
+## 🛠️ Installation and Setup
 
 ### Prerequisites
 * Python 3.x installed.
-* A working webcam (built-in or external).
+* A working webcam (internal or external).
 
 ### Installation
-
-1.  **Create `requirements.txt`** (if necessary):
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/YourUsername/Hand-Keyboard-Controller.git](https://github.com/YourUsername/Hand-Keyboard-Controller.git)
+    cd Hand-Keyboard-Controller
+    ```
+2.  **Create `requirements.txt`** (if necessary):
     ```
     opencv-python
     mediapipe
     pynput
     ```
-2.  **Install Dependencies:**
+3.  **Install Dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
----
-
-## 🚀 How to Run It (.py)
+### How to Run It (.py)
 
 Make sure your webcam is available and not in use by other applications.
 
